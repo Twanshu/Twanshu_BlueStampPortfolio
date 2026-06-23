@@ -1,5 +1,5 @@
-# Project Name Here
-Replace this text with a brief description (2-3 sentences) of your project. This description should draw the reader in and make them interested in what you've built. You can include what the biggest challenges, takeaways, and triumphs from completing the project were. As you complete your portfolio, remember your audience is less familiar than you are with all that your project entails!
+# Ball Tracking Robot
+The Ball Tracking Robot is an autonomous computer vision powered rover engineered to lock onto and dynamically follow a moving ball in real time. There are many different components needed such as: Raspberry Pi, ultrasonic sensors, motors, and more. All of these components work together simultaneously to help it function.
 
 You should comment out all portions of your portfolio that you have not completed yet, as well as any instructions:
 ```HTML 
@@ -9,7 +9,7 @@ You should comment out all portions of your portfolio that you have not complete
 
 | **Engineer** | **School** | **Area of Interest** | **Grade** |
 |:--:|:--:|:--:|:--:|
-| FirstName LastInitialOnly | School Name | Electrical Engineering | Incoming Senior
+| Twanshu K. | Irvington High School | Electrical Engineering | Incoming Senior
 
 **Replace the BlueStamp logo below with an image of yourself and your completed project. Follow the guide [here](https://tomcam.github.io/least-github-pages/adding-images-github-pages-site.html) if you need help.**
 
