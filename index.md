@@ -15,13 +15,6 @@ You should comment out all portions of your portfolio that you have not complete
 
 ![Headstone Image](logo.svg)
   
-# Starter
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/-c2njXLZAdY?si=5l4_m6QyWvNGTKp1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-
-The handheld game console has many different games; these games include: Tetris, snake, slot machine, and more. I was able to learn about soldering and how it is used to make conductive joints for the eletricity to pass through. The game console was made up of a circuit board that is connected to a battery pack through wires, with buttons and screen soldered on it. A challanged that I faced is that I accidentally soldered a button diagonally instead of it being straight. Later, I fixed this issue by keeping the screws of the cover loose which would allow me to be able to press the button properly. This was an amazing project to work on and build up the basic skills needed for my Ball Traking Robot project.
-
 
 
 # Final Milestone
@@ -98,3 +91,17 @@ One of the best parts about Github is that you can view how other people set up 
 - [Example 3](https://arneshkumar.github.io/arneshbluestamp/)
 
 To watch the BSE tutorial on how to create a portfolio, click here.
+
+
+
+# Starter
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/-c2njXLZAdY?si=5l4_m6QyWvNGTKp1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+
+The handheld game console has many different games; these games include: Tetris, snake, slot machine, and more. I was able to learn about soldering and how it is used to make conductive joints for the eletricity to pass through. The game console was made up of a circuit board that is connected to a battery pack through wires, with buttons and screen soldered on it. A challanged that I faced is that I accidentally soldered a button diagonally instead of it being straight. Later, I fixed this issue by keeping the screws of the cover loose which would allow me to be able to press the button properly. This was an amazing project to work on and build up the basic skills needed for my Ball Traking Robot project.
+
+
+
+
+
