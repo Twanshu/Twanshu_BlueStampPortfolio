@@ -42,18 +42,16 @@ For your second milestone, explain what you've worked on since your previous mil
 - What needs to be completed before your final milestone 
 -->
 
-<!---
+
 # First Milestone
 
-**Don't forget to replace the text below with the embedding for your milestone video. Go to Youtube, click Share -> Embed, and copy and paste the code to replace what's below.**
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/CaCazFBhYKs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-For your first milestone, describe what your project is and how you plan to build it. You can include:
-- An explanation about the different components of your project and how they will all integrate together
-- Technical progress you've made so far
-- Challenges you're facing and solving in your future milestones
-- What your plan is to complete your project
+The ultimate objective for this robot is to be able to find the largest area of red pixels seen by the PiCamera with Python code using the OpenCV library. Until the first milestone, I built the basic structure and placement of the components of my robot, set up my Raspberry Pi minicomputer, wired my two motors to the L298N motor driver board and to a power source, and finally wrote some simple lines of code to test the functionality of my DC motors.
+
+#Challenges
+The biggest challange I faced was setting up my Raspberry Pi, I resolved it by downloading imager and replcing the current raspberry os with the one installed by imager. Another major challange I faced was the wire management I connected all the wires without putting the breadboard and Raspberry Pi on the car, so I remedied this issue by placing my breadboard on the batteries, Raspberry Pi in the middle and having the ultrasonic sensors in the front.
 
 # Schematics 
 Here's where you'll put images of your schematics. [Tinkercad](https://www.tinkercad.com/blog/official-guide-to-tinkercad-circuits) and [Fritzing](https://fritzing.org/learning/) are both great resoruces to create professional schematic diagrams, though BSE recommends Tinkercad becuase it can be done easily and for free in the browser. 
@@ -61,19 +59,54 @@ Here's where you'll put images of your schematics. [Tinkercad](https://www.tinke
 # Code
 Here's where you'll put your code. The syntax below places it into a block of code. Follow the guide [here]([url](https://www.markdownguide.org/extended-syntax/)) to learn how to customize it to your project needs. 
 
-```c++
-void setup() {
-  // put your setup code here, to run once:
-  Serial.begin(9600);
-  Serial.println("Hello World!");
-}
 
-void loop() {
-  // put your main code here, to run repeatedly:
-
-}
 ```
--->
+#Basic Python Motor Code
+
+import  RPi.GPIO as GPIO
+import time
+
+GPIO.setmode(GPIO.BCM) 
+
+
+# The following are the names of the raspberry-pi pins that control each of them
+#Left Motor
+MOTOR1B = 23
+MOTOR1E = 24
+
+#Right Motor
+MOTOR2B = 16
+MOTOR2E = 26
+ena = 25
+enb = 12
+
+GPIO.setup(MOTOR1B, GPIO.OUT)
+GPIO.setup(MOTOR1E, GPIO.OUT)
+GPIO.setup(ena, GPIO.OUT)
+GPIO.setup(MOTOR2B, GPIO.OUT)
+GPIO.setup(MOTOR2E, GPIO.OUT)
+GPIO.setup(enb, GPIO.OUT)
+
+pwmA = GPIO.PWM(ena, 100)
+pwmB = GPIO.PWM(enb, 100)
+pwmA.start(60)
+pwmB.start(60)
+#These move the wheels Backwards
+GPIO.output(MOTOR1B,GPIO.HIGH)
+GPIO.output(MOTOR1E, GPIO.LOW)
+GPIO.output(MOTOR2E, GPIO.HIGH)
+GPIO.output(MOTOR2B, GPIO.LOW)
+
+time.sleep(5)
+
+
+GPIO.output(MOTOR1B, GPIO.LOW)
+GPIO.output(MOTOR1E, GPIO.LOW)
+
+GPIO.output(MOTOR2B, GPIO.LOW)
+GPIO.output(MOTOR2E, GPIO.LOW)
+
+```
 
 # Bill of Materials
 Here's where you'll list the parts in your project. To add more rows, just copy and paste the example rows below.
