@@ -46,11 +46,12 @@ For your second milestone, explain what you've worked on since your previous mil
 # First Milestone
 
 
-<iframe width="1011" height="568" src="https://www.youtube.com/embed/KfYuc8oXssA" title="Twanshu K. Milestone 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/KfYuc8oXssA" title="Twanshu K. Milestone 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
+# Summary
 The ultimate objective for this robot is to be able to find the largest area of red pixels seen by the PiCamera with Python code using the OpenCV library. Until the first milestone, I built the basic structure and placement of the components of my robot, set up my Raspberry Pi minicomputer, wired my two motors to the L298N motor driver board and to a power source, and finally wrote some simple lines of code to test the functionality of my DC motors.
 
-#Challenges
+# Challenges
 The biggest challange I faced was setting up my Raspberry Pi, I resolved it by downloading imager and replcing the current raspberry os with the one installed by imager. Another major challange I faced was the wire management I connected all the wires without putting the breadboard and Raspberry Pi on the car, so I remedied this issue by placing my breadboard on the batteries, Raspberry Pi in the middle and having the ultrasonic sensors in the front.
 
 # Schematics 
@@ -80,6 +81,7 @@ MOTOR2E = 26
 ena = 25
 enb = 12
 
+# Moves the wheels forward
 GPIO.setup(MOTOR1B, GPIO.OUT)
 GPIO.setup(MOTOR1E, GPIO.OUT)
 GPIO.setup(ena, GPIO.OUT)
@@ -91,13 +93,14 @@ pwmA = GPIO.PWM(ena, 100)
 pwmB = GPIO.PWM(enb, 100)
 pwmA.start(60)
 pwmB.start(60)
-#These move the wheels Backwards
+
+# Moves the wheels Backwards
 GPIO.output(MOTOR1B,GPIO.HIGH)
 GPIO.output(MOTOR1E, GPIO.LOW)
 GPIO.output(MOTOR2E, GPIO.HIGH)
 GPIO.output(MOTOR2B, GPIO.LOW)
 
-time.sleep(5)
+time.sleep(3)
 
 
 GPIO.output(MOTOR1B, GPIO.LOW)
