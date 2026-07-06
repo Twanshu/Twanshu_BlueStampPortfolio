@@ -56,11 +56,10 @@ The biggest challange I faced was setting up my Raspberry Pi, I resolved it by d
 
 # Schematics 
 
-<img width="622" height="351" alt="Screenshot 2026-07-06 at 2 28 00 PM" src="https://github.com/user-attachments/assets/db230257-2a9e-4421-b89c-73d26980a624" />
+<img width="650" height="400" alt="Screenshot 2026-07-06 at 2 28 00 PM" src="https://github.com/user-attachments/assets/db230257-2a9e-4421-b89c-73d26980a624" />
 
 # Code
-Here's where you'll put your code. The syntax below places it into a block of code. Follow the guide [here]([url](https://www.markdownguide.org/extended-syntax/)) to learn how to customize it to your project needs. 
-
+Basic code to have the motors running
 
 ```
 #Basic Python Motor Code
