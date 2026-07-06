@@ -56,10 +56,9 @@ The biggest challange I faced was setting up my Raspberry Pi, I resolved it by d
 
 # Schematics 
 
-'''
-<img width="700" height="450" alt="Screenshot 2026-07-06 at 2 28 00 PM" src="https://github.com/user-attachments/assets/db230257-2a9e-4421-b89c-73d26980a624" />
+<img width="700" height="450" alt="Screenshot 2026-07-06 at 3 41 46 PM" src="https://github.com/user-attachments/assets/463d07a8-4509-4b15-a64f-112a723d113b" />
 
-'''
+
 # Code
 Basic code to have the motors running
 
