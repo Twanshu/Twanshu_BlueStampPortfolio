@@ -63,26 +63,32 @@ The biggest challange I faced was setting up my Raspberry Pi, I resolved it by d
 Basic code to have the motors running
 
 ```
-#Basic Python Motor Code
-
-import  RPi.GPIO as GPIO
+# Basic Python Motor Code
+import RPi.GPIO as GPIO
 import time
 
+# Use Broadcom (BCM) pin numbering layout (uses GPIO number instead of physical pin number)
 GPIO.setmode(GPIO.BCM) 
 
 
-# The following are the names of the raspberry-pi pins that control each of them
-#Left Motor
+# PIN CONFIGURATION
+# The following are the names of the raspberry-pi pins that control each motor
+
+# Left Motor direction pins
 MOTOR1B = 23
 MOTOR1E = 24
 
-#Right Motor
+# Right Motor direction pins
 MOTOR2B = 16
 MOTOR2E = 26
-ena = 25
-enb = 12
 
-# Moves the wheels forward
+# Speed Control Pins (Enable pins on the motor driver)
+ena = 25  # Enable A - controls Left Motor speed
+enb = 12  # Enable B - controls Right Motor speed
+
+
+# --- GPIO SETUP ---
+# Configure all the motor control pins as outputs so we can send signals to them
 GPIO.setup(MOTOR1B, GPIO.OUT)
 GPIO.setup(MOTOR1E, GPIO.OUT)
 GPIO.setup(ena, GPIO.OUT)
@@ -90,25 +96,26 @@ GPIO.setup(MOTOR2B, GPIO.OUT)
 GPIO.setup(MOTOR2E, GPIO.OUT)
 GPIO.setup(enb, GPIO.OUT)
 
+
+# --- PWM / SPEED SETUP ---
+# Set up Pulse Width Modulation (PWM) on the Enable pins at a frequency of 100Hz
 pwmA = GPIO.PWM(ena, 100)
 pwmB = GPIO.PWM(enb, 100)
+
+# Start the PWM signals at a 60% duty cycle (motors will run at roughly 60% max speed)
 pwmA.start(60)
 pwmB.start(60)
 
-# Moves the wheels Backwards
-GPIO.output(MOTOR1B,GPIO.HIGH)
-GPIO.output(MOTOR1E, GPIO.LOW)
-GPIO.output(MOTOR2E, GPIO.HIGH)
-GPIO.output(MOTOR2B, GPIO.LOW)
 
-time.sleep(3)
+# --- MOTOR MOVEMENT ---
+# Set direction pins to move the motors.
+# Note: The original comment said 'forward', but setting 1B/2E HIGH and 1E/2B LOW typical moves them.
+# Change these combinations if your specific robot drives backward instead of forward.
+GPIO.output(MOTOR1B, GPIO.HIGH)  # Spin Left Motor in direction 1
+GPIO.output(MOTOR1E, GPIO.LOW)   
 
-
-GPIO.output(MOTOR1B, GPIO.LOW)
-GPIO.output(MOTOR1E, GPIO.LOW)
-
-GPIO.output(MOTOR2B, GPIO.LOW)
-GPIO.output(MOTOR2E, GPIO.LOW)
+GPIO.output(MOTOR2E, GPIO.HIGH)  # Spin Right Motor in direction 1
+GPIO.output(MOTOR2B, GPIO
 
 ```
 
