@@ -37,7 +37,15 @@ For your final milestone, explain the outcome of your project. Key details to in
 This milestone was a crucial part of my project, since I got a significant portion of my software done for this milestone. The code has to different shades of red noted in RGB, and any red that the Pi camera sees within that range of colors, it checks for the largest area of red pixels. Then after it identifies and makes a square around the object with the biggest area of red pixels (ball), it also makes a blue point in the middle of the object and gives the coordinates. I also permenently mounted my ultrasonic sensors in the front of my car chassis. 
 
 # Challenges
+In milestone 2, along with this massive progress cam a lot of setbacks. My goal for this milestone was to make the Pi camera be able to detect red color, and also a circle. But, everytime I tried to identify the circularity it don't detect the ball. I kept testing with different lengths for circuarity, and it never worked. Later, I resovled this problem by making the camera detect the largest area of red pixels instead of making it also detect a circle.
 
+# Code
+This is 
+
+```
+
+
+```
 
 
 # First Milestone
