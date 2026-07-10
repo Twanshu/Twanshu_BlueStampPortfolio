@@ -40,7 +40,7 @@ This milestone was a crucial part of my project, since I got a significant porti
 In milestone 2, along with this massive progress cam a lot of setbacks. My goal for this milestone was to make the Pi camera be able to detect red color, and also a circle. But, everytime I tried to identify the circularity it don't detect the ball. I kept testing with different lengths for circuarity, and it never worked. Later, I resovled this problem by making the camera detect the largest area of red pixels instead of making it also detect a circle.
 
 # Code
-This is 
+This is the code for detecting a the largest area  of red pixels 
 
 ```
 import cv2
