@@ -31,7 +31,7 @@ For your final milestone, explain the outcome of your project. Key details to in
 
 # Second Milestone
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/KfYuc8oXssA" title="Twanshu K. Milestone 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/EMb4H3xo51I?si=cZg5NEOur1T-7WnN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 # Summary
 This milestone was a crucial part of my project, since I got a significant portion of my software done for this milestone. The code has to different shades of red noted in RGB, and any red that the Pi camera sees within that range of colors, it checks for the largest area of red pixels. Then after it identifies and makes a square around the object with the biggest area of red pixels (ball), it also makes a blue point in the middle of the object and gives the coordinates. I also permenently mounted my ultrasonic sensors in the front of my car chassis. 
