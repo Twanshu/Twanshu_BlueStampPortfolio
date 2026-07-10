@@ -43,7 +43,72 @@ In milestone 2, along with this massive progress cam a lot of setbacks. My goal 
 This is 
 
 ```
+import cv2
+import numpy as np
+from picamera2 import Picamera2
 
+def main():
+    # Initialize and configure Picamera2
+    picam2 = Picamera2()
+    config = picam2.create_video_configuration(main={'format': 'RGB888', 'size': (1280, 720)})
+    picam2.configure(config)
+    picam2.start()
+
+    print("Starting object tracking. Press 'q' in the video window to quit.")
+
+    try:
+        while True:
+            # 1. Capture frame
+            frame = picam2.capture_array()
+
+            # 2. Convert to HSV for tracking
+            hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+         
+            # 3. Define range of red color in HSV and threshold
+            lower_red = np.array([155, 80, 80])
+            upper_red = np.array([179, 255, 255])
+            mask = cv2.inRange(hsv, lower_red, upper_red)
+         
+            # 4. Find contours on the mask
+            contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+            
+            # 5. Process ONLY the largest contour
+            if contours:
+                # Find the single largest contour in the list by area
+                largest_contour = max(contours, key=cv2.contourArea)
+                
+                # Check if it meets the minimum size threshold
+                if cv2.contourArea(largest_contour) > 500: 
+                    
+                    # Draw the bounding box for ONLY this largest contour
+                    x, y, w, h = cv2.boundingRect(largest_contour)
+                    cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 3)
+                    
+                    # Calculate the exact center using Image Moments
+                    M = cv2.moments(largest_contour)
+                    if M["m00"] != 0: # Prevent division by zero
+                        x_cord = int(M["m10"] / M["m00"])
+                        y_cord = int(M["m01"] / M["m00"])
+                        
+                        # Draw a small blue circle at the center of the tracked object
+                        cv2.circle(frame, (x_cord, y_cord), 5, (255, 0, 0), -1)
+                        print(f"Tracking coordinates: X={x_cord}, Y={y_cord}")
+
+            # 6. Display the processed frame locally
+            cv2.imshow('Red Object Tracking', frame)
+            
+            # 7. Break the loop if the 'q' key is pressed
+            if cv2.waitKey(1) & 0xFF == ord('q'):
+                break
+
+    finally:
+        # Clean up resources properly when exiting
+        picam2.stop()
+        cv2.destroyAllWindows()
+        print("Stream stopped and resources released.")
+
+if __name__ == '__main__':
+    main()
 
 ```
 
