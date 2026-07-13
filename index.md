@@ -126,7 +126,8 @@ The biggest challange I faced was setting up my Raspberry Pi, I resolved it by d
 
 # Schematics 
 
-<img width="700" height="450" alt="Screenshot 2026-07-06 at 3 41 46 PM" src="https://github.com/user-attachments/assets/463d07a8-4509-4b15-a64f-112a723d113b" />
+<img width="800" height="500" alt="Screenshot 2026-07-13 at 2 14 42 PM" src="https://github.com/user-attachments/assets/dfd737b5-622f-4bc2-9c34-32fbb09ff4ed" />
+
 
 
 # Code
