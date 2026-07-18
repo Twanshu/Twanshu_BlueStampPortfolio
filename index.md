@@ -23,7 +23,204 @@ For your final milestone, explain the outcome of your project. Key details to in
 - What your biggest challenges and triumphs were at BSE
 - A summary of key topics you learned about
 - What you hope to learn in the future after everything you've learned at BSE
+
 -->
+
+# Code
+This is the full code 
+
+```
+import cv2
+import numpy as np
+import threading
+import time
+from flask import Flask, render_template_string, Response
+from picamera2 import Picamera2
+import RPi.GPIO as GPIO
+from gpiozero import DistanceSensor, Motor
+
+app = Flask(__name__)
+
+# ==========================================
+# 1. HARDWARE SETUP
+# ==========================================
+GPIO.setmode(GPIO.BOARD)
+
+# Distance Sensors
+# Note: gpiozero measures distance in meters. The HC-SR04 max range is ~4m.
+ultrasonic_left = DistanceSensor(echo=17, trigger=4, max_distance=10, threshold_distance=0.2)
+ultrasonic_front = DistanceSensor(echo=9, trigger=10, max_distance=10, threshold_distance=0.2)
+ultrasonic_right = DistanceSensor(echo=22, trigger=27, max_distance=10, threshold_distance=0.2)
+
+# Motors
+motor_left = Motor(forward=23, backward=24)
+motor_right = Motor(forward=26, backward=16)
+
+# Initialize Picamera2
+picam2 = Picamera2()
+# Using BGR888 directly so OpenCV can process it natively without color-space mismatches
+config = picam2.create_video_configuration(main={'format': 'RGB888', 'size': (1280, 720)})
+picam2.configure(config)
+picam2.start()
+
+# ==========================================
+# 2. GLOBAL VARIABLES FOR THREADING
+# ==========================================
+global_frame = None
+frame_lock = threading.Lock()
+
+# Minimum contour area to count as a real detection (not noise)
+MIN_AREA = 500
+MAX_AREA = 250000
+
+# ==========================================
+# 3. MOTOR CONTROL FUNCTIONS
+# ==========================================
+def move_forward():
+    motor_left.forward(0.5)
+    motor_right.forward(0.5)
+
+def stop_move():
+    motor_left.stop()
+    motor_right.stop()
+
+def move_left():
+    motor_left.backward(0.4)
+    motor_right.forward(0.4)
+
+def move_right():
+    motor_left.forward(0.4)
+    motor_right.backward(0.4)
+
+def move_backward():
+    motor_left.backward(0.75)
+    motor_right.backward(0.75)
+
+# ==========================================
+# 4. BACKGROUND TASK: CAMERA & ROBOT LOGIC
+# ==========================================
+def control_loop():
+    global global_frame
+
+    # Define range of red color in HSV
+    lower_red = np.array([155, 80, 80])
+    upper_red = np.array([179, 255, 255])
+
+    while True:
+        # Capture frame
+        frame = picam2.capture_array()
+
+        # Convert to HSV for tracking
+        hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+        mask = cv2.inRange(hsv, lower_red, upper_red)
+
+        # Find contours on the mask
+        contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+        x_cord = 0
+        area = 0
+
+        # Process ONLY the largest contour
+        if contours:
+            largest_contour = max(contours, key=cv2.contourArea)
+            area = cv2.contourArea(largest_contour)
+
+            # Minimum size threshold to avoid tracking tiny specs of noise
+            if area > MIN_AREA:
+                # Draw the bounding box
+                x, y, w, h = cv2.boundingRect(largest_contour)
+                cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 3)
+
+                # Calculate exact center
+                M = cv2.moments(largest_contour)
+                if M["m00"] != 0:
+                    x_cord = int(M["m10"] / M["m00"])
+                    y_cord = int(M["m01"] / M["m00"])
+
+                    # Draw a small blue circle at the center
+                    cv2.circle(frame, (x_cord, y_cord), 5, (255, 0, 0), -1)
+
+        # Safely update the global frame so Flask can read it
+        with frame_lock:
+            global_frame = frame.copy()
+
+        # --- Robot Movement Logic ---
+        # Use the SAME threshold here as above (MIN_AREA), so noise below
+        # the detection cutoff can never trigger movement with a stale x_cord.
+        if MIN_AREA < area < MAX_AREA:
+            if x_cord > 900 or x_cord < 400:
+                if x_cord > 840:
+                    move_left()
+                else:
+                    move_right()
+            else:
+                move_forward()
+        else:
+            stop_move()
+
+        # Tiny sleep to prevent this loop from maxing out the Raspberry Pi's CPU
+        time.sleep(0.02)
+
+# ==========================================
+# 5. FLASK WEB SERVER ROUTES
+# ==========================================
+def generate_frames():
+    global global_frame
+    while True:
+        # Safely grab the latest frame from the background thread
+        with frame_lock:
+            if global_frame is None:
+                time.sleep(0.05)
+                continue
+            current_frame = global_frame.copy()
+
+        # Encode the frame as JPEG
+        success, buffer = cv2.imencode('.jpg', current_frame)
+        if not success:
+            continue
+
+        # Yield frame in MJPEG format
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + buffer.tobytes() + b'\r\n')
+
+        # Limit the stream framerate to save Wi-Fi bandwidth
+        time.sleep(0.05)
+
+@app.route('/')
+def index():
+    return render_template_string('''
+        <html>
+          <head>
+            <title>Raspberry Pi Live Stream</title>
+          </head>
+          <body>
+            <h1>Raspberry Pi Camera Live Feed</h1>
+            <img src="{{ url_for('video_feed') }}" width="640" height="480">
+          </body>
+        </html>
+    ''')
+
+@app.route('/video_feed')
+def video_feed():
+    return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+
+# ==========================================
+# 6. MAIN EXECUTION
+# ==========================================
+if __name__ == '__main__':
+    try:
+        # Start the camera/motor control loop as a background thread
+        logic_thread = threading.Thread(target=control_loop, daemon=True)
+        logic_thread.start()
+
+        # Start the Flask server on the main thread
+        app.run(host='0.0.0.0', port=5000, threaded=True)
+    finally:
+        stop_move()
+        picam2.stop()
+        print("\nHardware modules cleanly disconnected.")
+
+```
 
 
 
