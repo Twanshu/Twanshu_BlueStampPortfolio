@@ -1,6 +1,5 @@
 # Ball Tracking Robot
-The Ball Tracking Robot is an autonomous computer vision powered rover engineered to lock onto and dynamically follow a moving ball in real time. There are many different components needed such as: Raspberry Pi, ultrasonic sensors, motors, and more. All of these components work together simultaneously to help it function.
-
+The Ball Tracking Robot is an autonomous computer vision powered rover engineered to lock onto and dynamically follow a moving ball in real time. I am interested in this to learn about Raspberry Pi and use python to command the different components to work how I desire.
 
 | **Engineer** | **School** | **Area of Interest** | **Grade** |
 |:--:|:--:|:--:|:--:|
