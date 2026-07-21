@@ -26,7 +26,7 @@ For your final milestone, explain the outcome of your project. Key details to in
 -->
 
 # Code
-This is the full code 
+This is the full code for the robot with flask stream. 
 
 ```
 import cv2
@@ -47,9 +47,9 @@ GPIO.setmode(GPIO.BOARD)
 
 # Distance Sensors
 # Note: gpiozero measures distance in meters. The HC-SR04 max range is ~4m.
-ultrasonic_left = DistanceSensor(echo=17, trigger=4, max_distance=10, threshold_distance=0.2)
+ultrasonic_right = DistanceSensor(echo=17, trigger=4, max_distance=10, threshold_distance=0.2)
 ultrasonic_front = DistanceSensor(echo=9, trigger=10, max_distance=10, threshold_distance=0.2)
-ultrasonic_right = DistanceSensor(echo=22, trigger=27, max_distance=10, threshold_distance=0.2)
+ultrasonic_left = DistanceSensor(echo=22, trigger=27, max_distance=10, threshold_distance=0.2)
 
 # Motors
 motor_left = Motor(forward=23, backward=24)
@@ -72,28 +72,55 @@ frame_lock = threading.Lock()
 MIN_AREA = 500
 MAX_AREA = 250000
 
+# Obstacle avoidance: distance (meters) below which something is "too close"
+OBSTACLE_DISTANCE = 0.1
+
 # ==========================================
 # 3. MOTOR CONTROL FUNCTIONS
 # ==========================================
 def move_forward():
-    motor_left.forward(0.5)
-    motor_right.forward(0.5)
+    motor_left.forward(0.7)
+    motor_right.forward(0.7)
 
 def stop_move():
     motor_left.stop()
     motor_right.stop()
 
 def move_left():
-    motor_left.backward(0.4)
+    motor_left.backward(0.2)
     motor_right.forward(0.4)
 
 def move_right():
     motor_left.forward(0.4)
-    motor_right.backward(0.4)
+    motor_right.backward(0.2)
 
 def move_backward():
     motor_left.backward(0.75)
     motor_right.backward(0.75)
+
+def spin_search():
+    """Rotate in place (no forward/backward drift) to scan for the ball."""
+    motor_left.forward(0.4)
+    motor_right.backward(0.4)
+
+def avoid_obstacle():
+    """Stop, back up a bit, then turn right, out of the way of an obstacle.
+
+    This is a short blocking sequence (~1 second total). The camera feed
+    will pause briefly during this maneuver, which is an acceptable
+    trade-off for keeping the avoidance logic simple and reliable.
+    """
+    stop_move()
+    time.sleep(0.1)
+
+    move_backward()
+    time.sleep(0.5)
+    stop_move()
+    time.sleep(0.1)
+
+    move_right()
+    time.sleep(0.4)
+    stop_move()
 
 # ==========================================
 # 4. BACKGROUND TASK: CAMERA & ROBOT LOGIC
@@ -143,10 +170,27 @@ def control_loop():
         with frame_lock:
             global_frame = frame.copy()
 
+        # --- Obstacle check (highest priority, overrides ball tracking) ---
+        front_dist = ultrasonic_front.distance
+        left_dist = ultrasonic_left.distance
+        right_dist = ultrasonic_right.distance
+
+        obstacle_detected = (
+            front_dist < OBSTACLE_DISTANCE
+            or left_dist < OBSTACLE_DISTANCE
+            or right_dist < OBSTACLE_DISTANCE
+        )
+
         # --- Robot Movement Logic ---
-        # Use the SAME threshold here as above (MIN_AREA), so noise below
-        # the detection cutoff can never trigger movement with a stale x_cord.
-        if MIN_AREA < area < MAX_AREA:
+        # These three branches are mutually exclusive, so exactly one motor
+        # command is issued per loop iteration (no command gets silently
+        # overwritten by a later one in the same cycle).
+        if obstacle_detected:
+            # Something is too close: back off and reorient, then resume
+            # searching next cycle.
+            avoid_obstacle()
+        elif MIN_AREA < area < MAX_AREA:
+            # Ball locked on: steer/drive toward it.
             if x_cord > 900 or x_cord < 400:
                 if x_cord > 840:
                     move_left()
@@ -155,7 +199,11 @@ def control_loop():
             else:
                 move_forward()
         else:
-            stop_move()
+            # No ball in view: spin in place. Because this runs every
+            # iteration of the loop (every ~20ms) whenever the ball isn't
+            # locked on, the robot effectively spins continuously until
+            # red is spotted again.
+            spin_search()
 
         # Tiny sleep to prevent this loop from maxing out the Raspberry Pi's CPU
         time.sleep(0.02)
