@@ -1,5 +1,5 @@
 # Ball Tracking Robot
-The Ball Tracking Robot is an autonomous computer vision powered rover engineered to lock onto and dynamically follow a moving ball in real time. I am interested in this to learn about Raspberry Pi and use python to command the different components to work how I desire.
+The Ball Tracking Robot is an autonomous computer vision powered rover engineered to lock onto and dynamically follow a moving ball in real time. I am interested in this to learn about Raspberry Pi and use python to command the different components to work how I desire. I chose to do this project to learn about raspberry pi and python.
 
 | **Engineer** | **School** | **Area of Interest** | **Grade** |
 |:--:|:--:|:--:|:--:|
@@ -10,22 +10,18 @@ The Ball Tracking Robot is an autonomous computer vision powered rover engineere
   
 
 
-<!---
-# Final Milestone
+# Third Milestone
 
-**Don't forget to replace the text below with the embedding for your milestone video. Go to Youtube, click Share -> Embed, and copy and paste the code to replace what's below.**
+<iframe width="560" height="315" src="https://www.youtube.com/embed/EMb4H3xo51I?si=cZg5NEOur1T-7WnN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/F7M7imOVGug" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-For your final milestone, explain the outcome of your project. Key details to include are:
-- What you've accomplished since your previous milestone
-- What your biggest challenges and triumphs were at BSE
-- A summary of key topics you learned about
-- What you hope to learn in the future after everything you've learned at BSE
+## Summary
+For my third milestone I have fully coded the robot, and having it working with every component. Since my last milestone, I have had the the motors go forward toward the red ball. I have set the motors to move forward, right, or left depending on where the ball is in the camera frame. I have also made the robot spin to left in one spot in order to find the red ball. The robot is also using the ultrasonic sensors to detect obstacles and manuver them. Whenever there is an obstacle detected it moves backward, and then right.
 
--->
+## Challanges
+This milestone came with my biggest challange yet. My raspberry pi got completely reset. I had to redownload the os and I had all of my codes were erased from it. Fortunetly, I had documented my code, so I just had to download the cv2 (camera software) and flask (camera streaming software). After getting to my second milestone, in my full code the ultrasonic sensors didn't let the code run. In order to resolve this issue I rewired all the ultrasonic sensors, and I tested them individually. Then I ran my complete code and it was working.
 
-# Code
+## Code
 This is the full code for the robot with flask stream. 
 
 ```
@@ -276,13 +272,17 @@ if __name__ == '__main__':
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/EMb4H3xo51I?si=cZg5NEOur1T-7WnN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-# Summary
+
+<img width="703" height="609" alt="Screenshot 2026-07-21 at 4 07 31 PM" src="https://github.com/user-attachments/assets/99b554c9-f1a0-4357-a311-09622dd3513d" />
+
+
+## Summary
 This milestone was a crucial part of my project, since I got a significant portion of my software done for this milestone. The code has to different shades of red noted in RGB, and any red that the Pi camera sees within that range of colors, it checks for the largest area of red pixels. Then after it identifies and makes a square around the object with the biggest area of red pixels (ball), it also makes a blue point in the middle of the object and gives the coordinates. I also permenently mounted my ultrasonic sensors in the front of my car chassis. 
 
-# Challenges
+## Challenges
 In milestone 2, along with this massive progress cam a lot of setbacks. My goal for this milestone was to make the Pi camera be able to detect red color, and also a circle. But, everytime I tried to identify the circularity it don't detect the ball. I kept testing with different lengths for circuarity, and it never worked. Later, I resovled this problem by making the camera detect the largest area of red pixels instead of making it also detect a circle.
 
-# Code
+## Code
 This is the code for detecting a the largest area  of red pixels 
 
 ```
@@ -361,13 +361,13 @@ if __name__ == '__main__':
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/KfYuc8oXssA" title="Twanshu K. Milestone 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-# Summary
+## Summary
 The ultimate objective for this robot is to be able to find the largest area of red pixels seen by the PiCamera with Python code using the OpenCV library. Until the first milestone, I built the basic structure and placement of the components of my robot, set up my Raspberry Pi minicomputer, wired my two motors to the L298N motor driver board and to a power source, and finally wrote some simple lines of code to test the functionality of my DC motors.
 
-# Challenges
+## Challenges
 The biggest challange I faced was setting up my Raspberry Pi, I resolved it by downloading imager and replcing the current raspberry os with the one installed by imager. Another major challange I faced was the wire management I connected all the wires without putting the breadboard and Raspberry Pi on the car, so I remedied this issue by placing my breadboard on the batteries, Raspberry Pi in the middle and having the ultrasonic sensors in the front.
 
-# Schematics 
+## Schematics 
 
 <img width="800" height="500" alt="Screenshot 2026-07-13 at 2 14 42 PM" src="https://github.com/user-attachments/assets/dfd737b5-622f-4bc2-9c34-32fbb09ff4ed" />
 
