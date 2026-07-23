@@ -24,7 +24,7 @@ This milestone came with my biggest challange yet. My raspberry pi got completel
 ## Code
 This is the full code for the robot with flask stream. 
 
-```
+```python
 import cv2
 import numpy as np
 import threading
