@@ -452,16 +452,6 @@ Don't forget to place the link of where to buy each component inside the quotati
 | Basic connections components kit | All the necessary parts for connections such as: breadboard, jumper wires, resistors, and LEDs | $9.99 | <a href="https://www.amazon.com/EL-CK-002-Electronic-Breadboard-Capacitor-Potentiometer/dp/B01ERP6WL4/ref=sr_1_6?crid=FNH6BWJTZZG2&dib=eyJ2IjoiMSJ9.VNel8a9YKAdQOttMORwrLFKm7BcwrGQdUiF0yQPfuOCjJwbjvjMdRlLcqX5kskxTajWkOkv3H7NJXhGZRNPG_CSjhwnoD59MxD8ZKwTD9N4ljo4WEWOLb_4g2gqdnHIkq0gDwx_vY7-R_RDcPHFiPLnkTXyFaKOV16b9eVLB1VhzN3tUWiGltmreM2RjNwBrMdGdZ54s8vr2jG238TplxGjokHValC1trzTBjk-XG14.DZAb52FIdiuFwaOO362EXPxRrSxewTInrP3cXTwaUKc&dib_tag=se&keywords=jumper+wires%2C+breadboard%2C+resistors+kit+without+raspberry+pi&nsdOptOutParam=true&qid=1784752384&sprefix=jumper+wires%2C+breadboard%2C+resistors+kit+without+raspberry+p%2Caps%2C182&sr=8-6"> Link </a> |
 | Wireless Mouse and Keyboard | A separate mouse and keyboard is needed to use Raspberry Pi | $19.99 | <a href="https://www.amazon.com/Wireless-Keyboard-Ergonomic-Lag-Free-Cordless/dp/B0DLBD36HL/ref=sr_1_21?crid=3QRKZZRB2AU5R&dib=eyJ2IjoiMSJ9.mEAzOpyD6BFiOKTUz5iqTb9gS2cWqELO2nBZdm7WUIxEJwz9rc3UxHFI7YDqIue68_zLU9dMHG_3uY7QSwVgf2KrVSDQNSxlceqkCeCOB91GhzCV2rXuHJHdM2wo159vSqdxPAZH_trGVy63qO6ew-O8ACOsMyweuPxQ0qZMtjTmzM6R6Ip9ZPvZyhgN-PwnRE5nmQ6uZ3GBiYZ0T3z8w1FUPZNoiG2kC9bgzZIWdvE.BdtBxOz0anSv6wiaJEBLiBQeIk1ECxoGQWa7PHGgovs&dib_tag=se&keywords=wireless%2Bkeyboard%2Band%2Bmouse&qid=1784752469&sprefix=wireless%2Caps%2C244&sr=8-21&th=1"> Link </a> |
 
-<!--
-# Other Resources/Examples
-One of the best parts about Github is that you can view how other people set up their own work. Here are some past BSE portfolios that are awesome examples. You can view how they set up their portfolio, and you can view their index.md files to understand how they implemented different portfolio components.
-- [Example 1](https://trashytuber.github.io/YimingJiaBlueStamp/)
-- [Example 2](https://sviatil0.github.io/Sviatoslav_BSE/)
-- [Example 3](https://arneshkumar.github.io/arneshbluestamp/)
-
-To watch the BSE tutorial on how to create a portfolio, click here.
--->
-
 
 
 # Starter
@@ -472,6 +462,8 @@ To watch the BSE tutorial on how to create a portfolio, click here.
 The handheld game console has many different games; these games include: Tetris, snake, slot machine, and more. I was able to learn about soldering and how it is used to make conductive joints for the eletricity to pass through. The game console was made up of a circuit board that is connected to a battery pack through wires, with buttons and screen soldered on it. A challanged that I faced is that I accidentally soldered a button diagonally instead of it being straight. Later, I fixed this issue by keeping the screws of the cover loose which would allow me to be able to press the button properly. This was an amazing project to work on and build up the basic skills needed for my Ball Traking Robot project.
 
 
-
+## Other Resources/Examples
+https://samvit-kini.github.io/Samvit_BSE_Portfolio/
+https://deringur.github.io/BSE_Derin_Portfolio/#schematics
 
 
