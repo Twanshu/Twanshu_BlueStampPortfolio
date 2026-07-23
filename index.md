@@ -285,7 +285,7 @@ In milestone 2, along with this massive progress cam a lot of setbacks. My goal 
 ## Code
 This is the code for detecting a the largest area  of red pixels 
 
-```
+```python
 import cv2
 import numpy as np
 from picamera2 import Picamera2
@@ -376,7 +376,7 @@ The biggest challange I faced was setting up my Raspberry Pi, I resolved it by d
 # Code
 Basic code to have the motors running
 
-```
+```python
 # Basic Python Motor Code
 import RPi.GPIO as GPIO
 import time
