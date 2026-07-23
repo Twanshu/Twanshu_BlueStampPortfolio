@@ -367,13 +367,17 @@ The ultimate objective for this robot is to be able to find the largest area of 
 ## Challenges
 The biggest challange I faced was setting up my Raspberry Pi, I resolved it by downloading imager and replcing the current raspberry os with the one installed by imager. Another major challange I faced was the wire management I connected all the wires without putting the breadboard and Raspberry Pi on the car, so I remedied this issue by placing my breadboard on the batteries, Raspberry Pi in the middle and having the ultrasonic sensors in the front.
 
-## Schematics 
+# Schematics 
 
-<img width="800" height="500" alt="Screenshot 2026-07-13 at 2 14 42 PM" src="https://github.com/user-attachments/assets/dfd737b5-622f-4bc2-9c34-32fbb09ff4ed" />
+<img width="850" height="520" alt="Screenshot 2026-07-13 at 2 14 42 PM" src="https://github.com/user-attachments/assets/dfd737b5-622f-4bc2-9c34-32fbb09ff4ed" />
 
 
 
-# Code
+<img width="850" height="520" alt="Screenshot 2026-07-23 at 2 17 40 PM" src="https://github.com/user-attachments/assets/0e069bcb-699d-47f9-b793-e1196dc6f1b8" />
+
+
+
+## Code
 Basic code to have the motors running
 
 ```python
