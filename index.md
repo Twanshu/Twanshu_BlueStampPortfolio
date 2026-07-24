@@ -12,8 +12,7 @@ The Ball Tracking Robot is an autonomous computer vision powered rover engineere
 
 # Third Milestone
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/EMb4H3xo51I?si=cZg5NEOur1T-7WnN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
+<iframe width="560" height="315" src="https://www.youtube.com/embed/l4Mx1eJBpDw?si=AWDyxiqmuoOV6oTd" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Summary
 For my third milestone I have fully coded the robot, and having it working with every component. Since my last milestone, I have had the the motors go forward toward the red ball. I have set the motors to move forward, right, or left depending on where the ball is in the camera frame. I have also made the robot spin to left in one spot in order to find the red ball. The robot is also using the ultrasonic sensors to detect obstacles and manuver them. Whenever there is an obstacle detected it moves backward, and then right.
