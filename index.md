@@ -10,8 +10,7 @@ The Ball Tracking Robot is an autonomous computer vision powered rover engineere
   
 
 <p align="center">
-  <img width="876" height="324" alt="Screenshot 2026-07-24 at 4 18 42 PM" src="https://github.com/user-attachments/assets/14fa50c9-2c4a-4109-b7a5-5cd0f2e53638" />
-</p>
+  <img width="1049" height="327" alt="Screenshot 2026-07-27 at 3 55 44 PM" src="https://github.com/user-attachments/assets/be8f2ebf-fc82-4eeb-b2a6-979b773137e4" />
 
 
 
