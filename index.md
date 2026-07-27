@@ -1,4 +1,4 @@
-# Ball Tracking Robot
+# B.O.L.T (Ball - Oriented Localization Tech)
 The Ball Tracking Robot is an autonomous computer vision powered rover engineered to lock onto and dynamically follow a moving ball in real time. I am interested in this to learn about Raspberry Pi and use python to command the different components to work how I desire. I chose to do this project to learn about raspberry pi and python.
 
 | **Engineer** | **School** | **Area of Interest** | **Grade** |
