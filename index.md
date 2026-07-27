@@ -40,9 +40,8 @@ from gpiozero import DistanceSensor, Motor
 
 app = Flask(__name__)
 
-# ==========================================
 # 1. HARDWARE SETUP
-# ==========================================
+
 GPIO.setmode(GPIO.BOARD)
 
 # Distance Sensors
@@ -62,9 +61,8 @@ config = picam2.create_video_configuration(main={'format': 'RGB888', 'size': (12
 picam2.configure(config)
 picam2.start()
 
-# ==========================================
 # 2. GLOBAL VARIABLES FOR THREADING
-# ==========================================
+
 global_frame = None
 frame_lock = threading.Lock()
 
@@ -75,9 +73,8 @@ MAX_AREA = 250000
 # Obstacle avoidance: distance (meters) below which something is "too close"
 OBSTACLE_DISTANCE = 0.1
 
-# ==========================================
 # 3. MOTOR CONTROL FUNCTIONS
-# ==========================================
+
 def move_forward():
     motor_left.forward(0.7)
     motor_right.forward(0.7)
@@ -122,9 +119,9 @@ def avoid_obstacle():
     time.sleep(0.4)
     stop_move()
 
-# ==========================================
+
 # 4. BACKGROUND TASK: CAMERA & ROBOT LOGIC
-# ==========================================
+
 def control_loop():
     global global_frame
 
@@ -170,7 +167,7 @@ def control_loop():
         with frame_lock:
             global_frame = frame.copy()
 
-        # --- Obstacle check (highest priority, overrides ball tracking) ---
+        # Obstacle check (highest priority, overrides ball tracking)
         front_dist = ultrasonic_front.distance
         left_dist = ultrasonic_left.distance
         right_dist = ultrasonic_right.distance
@@ -251,9 +248,9 @@ def index():
 def video_feed():
     return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
-# ==========================================
+
 # 6. MAIN EXECUTION
-# ==========================================
+
 if __name__ == '__main__':
     try:
         # Start the camera/motor control loop as a background thread
