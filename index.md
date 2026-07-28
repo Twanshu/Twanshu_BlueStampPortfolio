@@ -6,6 +6,7 @@ The Ball Tracking Robot is an autonomous computer vision powered rover engineere
 | Twanshu K. | Irvington HS | Electrical Engineering | Incoming Senior
 
 
+
 ![Headshot](myHeadshot.svg)
 
 
