@@ -272,7 +272,7 @@ if __name__ == '__main__':
 <iframe width="560" height="315" src="https://www.youtube.com/embed/EMb4H3xo51I?si=cZg5NEOur1T-7WnN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 
-<img width="703" height="609" alt="Screenshot 2026-07-21 at 4 07 31 PM" src="https://github.com/user-attachments/assets/99b554c9-f1a0-4357-a311-09622dd3513d" />
+<img width="690" height="609" alt="Screenshot 2026-07-21 at 4 07 31 PM" src="https://github.com/user-attachments/assets/99b554c9-f1a0-4357-a311-09622dd3513d" />
 
 
 ## Summary
